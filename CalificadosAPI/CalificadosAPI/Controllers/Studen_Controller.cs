@@ -1,5 +1,6 @@
 ﻿using CalificadosAPI.Controllers.LogicControllers;
 using Microsoft.AspNetCore.Mvc;
+using CalificadosAPI.Models;
 
 namespace CalificadosAPI.Controllers
 {
@@ -61,6 +62,24 @@ namespace CalificadosAPI.Controllers
             dynamic datos = students.obtenerDataEstudiantes();
 
             return datos;
+        }
+
+
+        [HttpGet]
+        [Route("getStudent/{id}")]
+        public dynamic obtenerEstudiante(int id)
+        {
+            dynamic listaEstudiante = students.getStudent(id);
+            return listaEstudiante;
+        }
+
+
+        [HttpPut]
+        [Route("Update_notes")]
+        public bool actualizarNotas([FromBody] Nota nota)
+        {
+            bool result = students.upDateNotes(nota.id, nota.Calificacion, nota.Descripcion, nota.Id_estudiante);
+            return result;
         }
     }
 }
