@@ -6,7 +6,7 @@ namespace CalificadosAPI.DAO
     public class Conexion
     {
         SqlConnection conex;
-        static string servidor = "";
+        static string servidor = "DESKTOP-6U77SPQ\\SQLEXPRESS";
         public string saludo;
 
 

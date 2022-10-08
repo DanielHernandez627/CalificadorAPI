@@ -184,5 +184,36 @@ namespace CalificadosAPI.Controllers.LogicControllers
 
             return json;
         }
+
+
+        public dynamic getStudent(int id)
+        {
+            string json;
+            DataTable dt;
+
+            string query = "SELECT Notas.id,id_estudiante, Notas.Nota, Notas.Descripcion FROM Notas WHERE Notas.id_estudiante = " + id + "";
+            dt = cn.Execonsultas(query);
+
+            if(dt.Rows.Count > 0)
+            {
+                json = JsonConvert.SerializeObject(dt);
+            }
+            else
+            {
+                json = "Not Data";
+            }
+
+            return json;
+
+        }
+
+
+        public bool upDateNotes(int id, double nota, string descripcion, int id_estudiante)
+        {
+            string query = "UPDATE Notas SET Nota = " + nota + " , Descripcion = '" + descripcion + "' WHERE id = " + id + " AND id_estudiante = "+id_estudiante+"";
+
+            return cn.basica(query);
+        } 
+
     }
 }
